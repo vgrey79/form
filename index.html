@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="style.css" />
+    <title>Создание заявки на проверку контрагента</title>
+</head>
+<body>
+    <div>
+       <h1>Форма для заполнения заявки на проверку контрагента</h1> 
+    </div>
+    
+    <form>
+        <div>
+          <button type="button" class="info" onclick="message(1)">?</button>
+          <label id="companyLabel">Введите наименование контрагента:</label>
+          <select name="typeOfEntity" id="typeOfEntity">
+            <option value="ООО">ООО</option>
+            <option value="АО">АО</option>
+            <option value="ПАО">ПАО</option>
+            <option value="ИП">ИП</option>
+            <option value="ФЛ">ФЛ</option>
+            <option value="Прочее">Прочее</option>            
+          </select>           
+          <input name="company" id="company"/>  
+        </div>
+        <div>
+            <button type="button" class="info" onclick="message(2)">?</button>
+            <label>Введите ИНН контрагента:</label>
+            <input name="inn" id="inn"/>
+        </div>
+        <div>
+            <button type="button" class="info" onclick="message(3)">?</button>
+            <label>Вид договора:</label>
+            <select name="typeOfContract" id="typeOfContract">
+                <option value="none"></option>
+                <option value="Договор поставки товаров">Договор поставки товаров</option>
+                <option value="Договор подряда">Договор подряда</option>
+                <option value="Договор оказания услуг">Договор оказания услуг</option>
+                <option value="Прочее">Прочее</option>
+            </select> 
+        </div>
+        <div>
+            <button type="button" class="info" onclick="message(4)">?</button>
+            <label>Цена договора:</label>
+            <input name="price" id="price"/>
+            <select name="currency" id="currency">
+              <option value="руб">РУБ</option>
+              <option value="долларов США">$</option>
+              <option value="евро">EUR</option>
+          </select> 
+        </div>
+        <div>
+            <button type="button" class="info" onclick="message(5)">?</button>
+           <label for="pet-select">Выберите основание для проведения проверки:</label>
+        <select name="typeOfChecking" id="typeOfChecking">
+            <option value="none"></option>
+            <option value="Новый контрагент">Новый контрагент</option>
+            <option value="Новый договор с действующим контрагентом">Новый договор с действующим контрагентом</option>
+            <option value="Внеплановая проверка">Внеплановая проверка</option>
+        </select> 
+        </div> 
+        <div>
+            <button type="button" class="info" onclick="message(6)">?</button>
+            <label>Источник информации о контрагенте:</label>
+            <input name="source" id="source"/>
+        </div>   
+        <div>
+            <button type="button" class="info" onclick="message(7)">?</button>
+            <label>Деловой сайт контрагента:</label>
+            <input name="site" id="site"/>
+        </div>   
+        <div>
+            <fieldset id="documents">
+                <legend id="legend">Предоставленные контрагентом документы:</legend>
+                <div>
+                  <input type="checkbox" id="chapter" name="document" value="Устав">
+                  <label for="chapter">Устав</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="entity" name="document" value="Свидетельство о регистрации юридического лица">
+                  <label for="entity">Свидетельство о регистрации юридического лица</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="tax" name="document" value="Свидетельство о постановке на учет в налоговом органе">
+                  <label for="tax">Свидетельство о постановке на учет в налоговом органе</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="chooseSEO" name="document" value="Решение об избрании единоличного исполнительного органа">
+                  <label for="chooseSEO">Решение об избрании единоличного исполнительного органа</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="orderSEO" name="document" value="Приказ о вступлении в должность единоличного исполнительного органа">
+                  <label for="orderSEO">Приказ о вступлении в должность единоличного исполнительного органа</label>
+                </div>
+                <div id="licenseDiv">
+                  <input type="checkbox" id="license" name="document" value="Лицензии, разрешения, свидетельства о членстве в СРО">
+                  <label for="license">Лицензии, разрешения, свидетельства о членстве в СРО</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="poa" name="document" value="Доверенность, выданная лицу, подписывающему договор">
+                  <label for="poa">Доверенность, выданная лицу, подписывающему договор</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="balance" name="document" value="Бухгатерские балансы за 3 последних года">
+                  <label for="balance">Бухгатерские балансы за 3 последних года</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="reports" name="document" value="Отчеты о прибылях и убытках за 3 последних года">
+                  <label for="balance">Отчеты о прибылях и убытках за 3 последних года</label>
+                </div>                
+              </fieldset>
+              <div>
+                <label>Ответственный специалист:</label>
+                <input name="author" id="author"/>
+            </div>   
+
+        </div>
+
+        <button type="button" id="submit" onclick="createForm()">Создать заявку</button>
+    </form>
+    <script src='pdfmake.js'></script>
+    <script src='vfs_fonts.js'></script>
+    <script src='app.js'></script>
+</body>
+</html>
